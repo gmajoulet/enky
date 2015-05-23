@@ -7,14 +7,22 @@
 
 module.exports = {
   /**
-   * `EscrowController.get()`
+   * `EscrowController.find()`
    */
-  get: function (req, res) {
+  find: function (req, res) {
     return res.json({
-      todo: 'get() is not implemented yet!'
+      todo: 'find() is not implemented yet!'
     });
   },
 
+  /**
+   * `EscrowController.findOne()`
+   */
+  findOne: function (req, res) {
+    return res.json({
+      todo: 'findOne() is not implemented yet!'
+    });
+  },
 
   /**
    * `EscrowController.create()`
@@ -25,7 +33,6 @@ module.exports = {
     });
   },
 
-
   /**
    * `EscrowController.update()`
    */
@@ -35,16 +42,14 @@ module.exports = {
     });
   },
 
-
   /**
-   * `EscrowController.delete()`
+   * `EscrowController.destroy()`
    */
-  delete: function (req, res) {
+  destroy: function (req, res) {
     return res.json({
-      todo: 'delete() is not implemented yet!'
+      todo: 'destroy() is not implemented yet!'
     });
   },
-
 
   /**
    * `EscrowController.release()`
@@ -54,7 +59,6 @@ module.exports = {
       todo: 'release() is not implemented yet!'
     });
   },
-
 
   /**
    * `EscrowController.refund()`

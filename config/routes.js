@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -46,4 +46,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  'POST /api/1/escrows/:id/release': 'EscrowController.release',
+  'POST /api/1/escrows/:id/refund': 'EscrowController.refund'
 };
