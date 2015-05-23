@@ -1,17 +1,42 @@
-/**
-* Escrow.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
-
 module.exports = {
   attributes: {
-    get: { type: 'string' },
-    create: { type: 'string' },
-    update: { type: 'string' },
-    delete: { type: 'string' },
-    release: { type: 'string' },
-    refund: { type: 'string' }
+    status: {
+      type: 'string',
+      enum: ['funding', 'funded', 'released', 'refunded']
+    },
+    refundAddress: {
+      type: 'string',
+      size: 35,
+      regex: /^[123][a-zA-Z0-9]{26,34}$/,
+      required: true
+    },
+    payoutAddress: {
+      type: 'string',
+      size: 35,
+      regex: /^[123][a-zA-Z0-9]{26,34}$/,
+      required: true
+    },
+    fundingAddress: {
+      type: 'string',
+      size: 35,
+      regex: /^[123][a-zA-Z0-9]{26,34}$/,
+      required: true
+    },
+    amount: {
+      type: 'integer',
+      defaultsTo: 0
+    },
+    expectedAmount: {
+      type: 'integer',
+      required: true
+    }
+    // seller: {
+    //   model:'user',
+    //   required: true
+    // },
+    // buyer: {
+    //   model: 'user',
+    //   required: true
+    // }
   }
 };
