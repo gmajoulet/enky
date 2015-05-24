@@ -1,9 +1,11 @@
-require("sails-test-helper");
+var request = require('supertest'),
+  expect = require('chai').expect;
 
-describe(TEST_NAME, function() {
+describe('controllers/EscrowController', function() {
   describe('GET /escrows', function() {
     it('should get all the escrows', function(done) {
-      request.get('/api/1/escrows')
+      request(sails.hooks.http.app)
+        .get('/api/1/escrows')
         .expect(200)
         .expect(function(res) {
           expect(res.body.escrows).to.be.an('array');
@@ -15,7 +17,8 @@ describe(TEST_NAME, function() {
 
   describe('GET /escrows/:id', function() {
     it('should get the escrow', function(done) {
-      request.get('/api/1/escrows/1')
+      request(sails.hooks.http.app)
+        .get('/api/1/escrows/1')
         .expect(200)
         .expect(function(res) {
           expect(res.body.escrow).to.be.an('object');
@@ -25,7 +28,8 @@ describe(TEST_NAME, function() {
     });
 
     it('should not get an escrow that does not exist', function(done) {
-      request.get('/api/1/escrows/9999999')
+      request(sails.hooks.http.app)
+        .get('/api/1/escrows/9999999')
         .expect(404)
         .end(done);
     });

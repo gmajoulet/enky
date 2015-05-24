@@ -80,8 +80,7 @@ module.exports.connections = {
     user: 'YOUR_POSTGRES_USER',
     password: 'YOUR_POSTGRES_PASSWORD',
     database: 'YOUR_POSTGRES_DB'
-  }
-
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -89,4 +88,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
 
+  test: {
+    adapter: 'sails-memory'
+  }
 };
