@@ -6,6 +6,8 @@ var Sails = require('sails'),
 before(function(done) {
   Sails.lift({
     log: {
+      // Comment this line if you're trying to debug a silent error such as a
+      // fixture validation error
       level: 'error'
     },
     models: {
