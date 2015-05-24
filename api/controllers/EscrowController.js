@@ -10,8 +10,8 @@ module.exports = {
    * `EscrowController.find()`
    */
   find: function (req, res) {
-    return res.json({
-      todo: 'find() is not implemented yet!'
+    Escrow.find().then(function(escrows) {
+      return res.json({ escrows: escrows });
     });
   },
 
@@ -19,8 +19,14 @@ module.exports = {
    * `EscrowController.findOne()`
    */
   findOne: function (req, res) {
-    return res.json({
-      todo: 'findOne() is not implemented yet!'
+    var id = req.param('id');
+
+    Escrow.find(id).then(function(escrow) {
+      if (!escrow.length) {
+        return res.notFound();
+      }
+
+      return res.json({ escrow: escrow });
     });
   },
 
