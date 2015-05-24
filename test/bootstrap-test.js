@@ -19,12 +19,16 @@ before(function(done) {
       return done(err);
     }
 
-    // Load our fixtures since we just dropped the database
-    var barrels = new Barrels();
+    done();
+  });
+});
 
-    barrels.populate(function(err) {
-      done(err);
-    });
+beforeEach(function(done) {
+  // Load fixtures again before every test
+  var barrels = new Barrels();
+
+  barrels.populate(function(err) {
+    done(err);
   });
 });
 

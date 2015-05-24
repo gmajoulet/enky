@@ -18,7 +18,7 @@ describe('controllers/EscrowController', function() {
   describe('GET /escrows/:id', function() {
     it('should get the escrow', function(done) {
       request(sails.hooks.http.app)
-        .get('/api/1/escrows/1')
+        .get('/api/1/escrows/4')
         .expect(200)
         .expect(function(res) {
           expect(res.body.escrow).to.be.an('object');
