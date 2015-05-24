@@ -1,3 +1,5 @@
+var co = require('co');
+
 /**
  * EscrowController
  *
@@ -10,7 +12,9 @@ module.exports = {
    * `EscrowController.find()`
    */
   find: function (req, res) {
-    Escrow.find().then(function(escrows) {
+    co(function* () {
+      var escrows = yield Escrow.find();
+
       return res.json({ escrows: escrows });
     });
   },
@@ -19,10 +23,12 @@ module.exports = {
    * `EscrowController.findOne()`
    */
   findOne: function (req, res) {
-    // The param is automatically named id by Sails, but it's a hash
-    var hash = req.param('id');
+    co(function* () {
+      // The param is automatically named id by Sails, but it's a hash
+      var hash = req.param('id');
 
-    Escrow.find({ hash: hash }).then(function(escrows) {
+      var escrows = yield Escrow.find({ hash: hash });
+
       if (!escrows.length) {
         return res.notFound();
       }

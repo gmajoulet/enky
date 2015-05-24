@@ -8,6 +8,7 @@
     "barrels": "^1.4.1",
     "base-58": "0.0.1",
     "chai": "^2.3.0",
+    "co": "^4.5.4",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
@@ -30,9 +31,9 @@
     "supertest": "^1.0.1"
   },
   "scripts": {
-    "start": "node app.js",
-    "debug": "node debug app.js",
-    "test": "PORT=1338 NODE_ENV=test mocha -R spec --recursive"
+    "start": "node --harmony app.js",
+    "debug": "node --harmony debug app.js",
+    "test": "PORT=1338 NODE_ENV=test mocha -R spec --recursive --harmony"
   },
   "main": "app.js",
   "repository": {
