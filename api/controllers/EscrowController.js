@@ -30,12 +30,14 @@ module.exports = {
       var escrows = yield Escrow.find({ hash: hash });
 
       if (!escrows.length) {
-        return res.notFound();
+        throw 'Not found';
       }
 
       // Escrow.find method always return an Array, so we get the first result
       // since we know the ID to be unique, there is either 0 or 1 result
       return res.json({ escrow: escrows[0] });
+    }).catch(function(error) {
+      return res.notFound(error);
     });
   },
 
