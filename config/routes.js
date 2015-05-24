@@ -46,6 +46,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /api/1/escrows/:id/release': 'EscrowController.release',
-  'POST /api/1/escrows/:id/refund': 'EscrowController.refund'
+  'POST /api/1/escrows/:hash/release': 'EscrowController.release',
+  'POST /api/1/escrows/:hash/refund': 'EscrowController.refund'
 };

@@ -2,7 +2,9 @@ module.exports = {
   attributes: {
     hash: {
       type: 'string',
-      unique: true
+      unique: true,
+      regex: /^[a-zA-Z0-9]{21,22}$/,
+      required: true
     },
     status: {
       type: 'string',

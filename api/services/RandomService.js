@@ -1,5 +1,5 @@
 var base58 = require('base-58'),
-  crypto = requir('crypto');
+  crypto = require('crypto');
 
 module.exports = {
   /**

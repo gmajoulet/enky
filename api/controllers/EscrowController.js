@@ -19,9 +19,10 @@ module.exports = {
    * `EscrowController.findOne()`
    */
   findOne: function (req, res) {
-    var id = req.param('id');
+    // The param is automatically named id by Sails, but it's a hash
+    var hash = req.param('id');
 
-    Escrow.find(id).then(function(escrows) {
+    Escrow.find({ hash: hash }).then(function(escrows) {
       if (!escrows.length) {
         return res.notFound();
       }
