@@ -1,5 +1,9 @@
 module.exports = {
   attributes: {
+    hash: {
+      type: 'string',
+      unique: true
+    },
     status: {
       type: 'string',
       enum: ['funding', 'funded', 'released', 'refunded']
