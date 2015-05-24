@@ -21,12 +21,14 @@ module.exports = {
   findOne: function (req, res) {
     var id = req.param('id');
 
-    Escrow.find(id).then(function(escrow) {
-      if (!escrow.length) {
+    Escrow.find(id).then(function(escrows) {
+      if (!escrows.length) {
         return res.notFound();
       }
 
-      return res.json({ escrow: escrow });
+      // Escrow.find method always return an Array, so we get the first result
+      // since we know the ID to be unique, there is either 0 or 1 result
+      return res.json({ escrow: escrows[0] });
     });
   },
 
