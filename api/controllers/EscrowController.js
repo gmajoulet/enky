@@ -29,7 +29,10 @@ module.exports = {
 
       return res.json({ escrow: escrow });
     }).catch(function(error) {
-      return res.notFound(error);
+      return res.apiError({
+        statusCode: 404,
+        code: error
+      });
     });
   },
 

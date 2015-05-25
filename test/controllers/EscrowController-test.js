@@ -31,6 +31,9 @@ describe('controllers/EscrowController', function() {
       request(sails.hooks.http.app)
         .get('/api/1/escrows/9sCVLPisidWq0000000000')
         .expect(404)
+        .expect(function(res) {
+          expect(res.body.code).to.equal('escrow_not_found');
+        })
         .end(done);
     });
   });
