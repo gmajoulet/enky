@@ -2,7 +2,7 @@
  * API error handler
  *
  * Usage:
- * return res.apiError(statusCode, code, message);
+ * return res.apiError(statusCode, code, message, invalidAttributes);
  *
  * e.g.:
  * ```
@@ -10,7 +10,7 @@
  * ```
  */
 
-module.exports = function apiError(statusCode, code, message) {
+module.exports = function apiError(statusCode, code, message, invalidAttributes) {
   var req = this.req,
     res = this.res;
 
@@ -21,9 +21,16 @@ module.exports = function apiError(statusCode, code, message) {
   // Set the response status code
   res.status(statusCode);
 
-  // Send the response with the error code and message
-  return res.json({
+  var responseData = {
     code: code,
     message: message
-  });
+  };
+
+  // If it's a validation error
+  if ('object' === typeof invalidAttributes) {
+    responseData.invalidAttributes = invalidAttributes;
+  }
+
+  // Send the response with the error code and message
+  return res.json(responseData);
 };

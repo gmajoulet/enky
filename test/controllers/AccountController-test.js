@@ -23,6 +23,10 @@ describe('controllers/AccountController', function() {
         .expect(function(res) {
           expect(res.body.account).to.be.an('object');
           expect(res.body.account).to.have.property('status');
+          expect(res.body.account).to.have.property('email');
+          expect(res.body.account).to.have.property('email');
+          expect(res.body.account).not.to.have.property('password');
+          expect(res.body.account).not.to.have.property('salt');
         })
         .end(done);
     });
@@ -33,6 +37,25 @@ describe('controllers/AccountController', function() {
         .expect(404)
         .expect(function(res) {
           expect(res.body.code).to.equal('account_not_found');
+        })
+        .end(done);
+    });
+  });
+
+  describe('POST /accounts/:hash', function() {
+    it('should create an account', function(done) {
+      request(sails.hooks.http.app)
+        .post('/api/1/accounts')
+        .send({
+          account: {
+            email: 'newaccount@enky.io',
+            password: 'newaccount',
+            hash: '9sCVLPisidWq0000000001'
+          }
+        })
+        .expect(201)
+        .expect(function(res) {
+          expect(res.body.account).to.be.an('object');
         })
         .end(done);
     });

@@ -16,7 +16,8 @@ module.exports = {
     },
     status: {
       type: 'string',
-      enum: ['pending', 'regular']
+      enum: ['pending', 'regular'],
+      defaultsTo: 'pending'
     },
     email: {
       type: 'email',

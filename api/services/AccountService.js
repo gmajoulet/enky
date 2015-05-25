@@ -39,8 +39,8 @@ module.exports = {
     });
   },
 
-  create: function(hash) {
-    throw 'Account.create is not implemented yet!';
+  create: function(accountData) {
+    return Account.create(accountData);
   },
 
   update: function(hash) {

@@ -37,8 +37,19 @@ module.exports = {
    * `AccountController.create()`
    */
   create: function (req, res) {
-    return res.json({
-      todo: 'create() is not implemented yet!'
+    co(function* () {
+      var accountData = req.param('account'),
+        account = yield AccountService.create(accountData);
+
+      return res.status(201).json({ account: account });
+    }).catch(function(error) {
+      if ('object' === typeof error) {
+        error = error.toJSON();
+
+        return res.apiError(error.status, error.error, error.summary, error.invalidAttributes);
+      }
+
+      return res.apiError();
     });
   },
 
