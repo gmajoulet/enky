@@ -2,37 +2,28 @@
  * API error handler
  *
  * Usage:
- * return res.apiError();
- * return res.apiError(options);
+ * return res.apiError(statusCode, code, message);
  *
  * e.g.:
  * ```
- * return res.apiError({
- *   statusCode: 404,
- *   code: 'escrow_not_found',
- *   message: 'No escrow found'
- * });
+ * return res.apiError(404, 'escrow_not_found', 'No escrow found');
  * ```
  */
 
-var extend = require('util')._extend;
-
-module.exports = function apiError(options) {
+module.exports = function apiError(statusCode, code, message) {
   var req = this.req,
     res = this.res;
 
-  options = extend({
-    statusCode: 400,
-    code: 'bad_request',
-    message: ''
-  }, options);
+  statusCode = statusCode || 400;
+  code = code || 'bad_request';
+  message = message || '';
 
-  // Set status code
-  res.status(options.statusCode);
+  // Set the response status code
+  res.status(statusCode);
 
   // Send the response with the error code and message
   return res.json({
-    code: options.code,
-    message: options.message
+    code: code,
+    message: message
   });
 };
