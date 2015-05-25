@@ -43,6 +43,47 @@ describe('controllers/AccountController', function() {
   });
 
   describe('POST /accounts/:hash', function() {
+    it('should not create an account if the validation fails', function(done) {
+      request(sails.hooks.http.app)
+        .post('/api/1/accounts')
+        .send({
+          account: {
+            email: 'foo@enky',
+            password: 'newaccount',
+            hash: '9sCVLPisidWq0000000001'
+          }
+        })
+        .expect(400)
+        .expect(function(res) {
+          expect(res.body.code).to.equal('E_VALIDATION');
+          expect(res.body.message).to.equal('1 attribute is invalid');
+          expect(res.body.invalidAttributes).to.have.property('email');
+          expect(res.body.invalidAttributes).not.to.have.property('hash');
+          expect(res.body.invalidAttributes).not.to.have.property('password');
+        })
+        .end(done);
+    });
+
+    it('should not create an account if the validation fails', function(done) {
+      request(sails.hooks.http.app)
+        .post('/api/1/accounts')
+        .send({
+          account: {
+            email: 'foo@enky',
+            password: 'newaccount'
+          }
+        })
+        .expect(400)
+        .expect(function(res) {
+          expect(res.body.code).to.equal('E_VALIDATION');
+          expect(res.body.message).to.equal('2 attributes are invalid');
+          expect(res.body.invalidAttributes).to.have.property('email');
+          expect(res.body.invalidAttributes).to.have.property('hash');
+          expect(res.body.invalidAttributes).not.to.have.property('password');
+        })
+        .end(done);
+    });
+
     it('should create an account', function(done) {
       request(sails.hooks.http.app)
         .post('/api/1/accounts')
