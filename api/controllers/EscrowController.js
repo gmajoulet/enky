@@ -24,10 +24,8 @@ module.exports = {
    */
   findOne: function (req, res) {
     co(function* () {
-      // The param is automatically named id by Sails, but it's a hash
-      var hash = req.param('id');
-
-      var escrows = yield Escrow.find({ hash: hash });
+      var hash = req.param('hash'),
+        escrows = yield Escrow.find({ hash: hash });
 
       if (!escrows.length) {
         throw 'Not found';
