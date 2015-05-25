@@ -13,7 +13,7 @@ module.exports = {
    */
   find: function (req, res) {
     co(function* () {
-      var escrows = yield Escrow.find();
+      var escrows = yield EscrowService.getAll();
 
       return res.json({ escrows: escrows });
     });
@@ -25,15 +25,9 @@ module.exports = {
   findOne: function (req, res) {
     co(function* () {
       var hash = req.param('hash'),
-        escrows = yield Escrow.find({ hash: hash });
+        escrow = yield EscrowService.get(hash);
 
-      if (!escrows.length) {
-        throw 'Not found';
-      }
-
-      // Escrow.find method always return an Array, so we get the first result
-      // since we know the ID to be unique, there is either 0 or 1 result
-      return res.json({ escrow: escrows[0] });
+      return res.json({ escrow: escrow });
     }).catch(function(error) {
       return res.notFound(error);
     });

@@ -1,10 +1,18 @@
+var co = require('co');
+
 module.exports = {
+  /**
+   * Escrow model attributes
+   *
+   * @type {Object}
+   */
   attributes: {
     hash: {
       type: 'string',
+      primaryKey: true,
       unique: true,
-      regex: /^[a-zA-Z0-9]{21,22}$/,
-      required: true
+      required: true,
+      regex: /^[a-zA-Z0-9]{21,22}$/
     },
     status: {
       type: 'string',
