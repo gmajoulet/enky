@@ -32,6 +32,21 @@ module.exports = {
     salt: {
       type: 'string',
       required: true
+    },
+
+    /**
+     * Model serialization tweakings
+     *
+     * @return {Object}
+     */
+    toJSON: function() {
+      var account = this.toObject();
+
+      // Remove the password and the salt from the serialization
+      delete account.password;
+      delete account.salt;
+
+      return account;
     }
   },
 
