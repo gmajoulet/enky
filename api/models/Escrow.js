@@ -1,5 +1,3 @@
-var co = require('co');
-
 module.exports = {
   /**
    * Escrow model attributes
