@@ -1,8 +1,10 @@
 {
   "predef": [
     "Promise",
+    "Account",
     "Escrow",
-    "EscrowService"
+    "EscrowService",
+    "AccountService"
   ],
   "node": true,
   "boss": true,
