@@ -46,11 +46,18 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // Escrow routes
   'GET /api/1/escrows': 'EscrowController.find',
   'GET /api/1/escrows/:hash': 'EscrowController.findOne',
   'POST /api/1/escrows/:hash': 'EscrowController.create',
   'PUT /api/1/escrows/:hash': 'EscrowController.update',
   'DELETE /api/1/escrows/:hash': 'EscrowController.destroy',
   'POST /api/1/escrows/:hash/release': 'EscrowController.release',
-  'POST /api/1/escrows/:hash/refund': 'EscrowController.refund'
+  'POST /api/1/escrows/:hash/refund': 'EscrowController.refund',
+
+  // Account routes
+  'GET /api/1/accounts': 'AccountController.find',
+  'GET /api/1/accounts/:hash': 'AccountController.findOne',
+  'POST /api/1/accounts/:hash': 'AccountController.create',
+  'PUT /api/1/accounts/:hash': 'AccountController.update'
 };
