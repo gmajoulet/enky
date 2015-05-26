@@ -18,7 +18,7 @@ describe('controllers/EscrowController', function() {
   describe('GET /escrows/:hash', function() {
     it('should get the escrow', function(done) {
       request(sails.hooks.http.app)
-        .get('/api/1/escrows/9sCVLPisidWqxApx2bxqYX')
+        .get('/api/1/escrows/9sCVLPisidWqxApx2bxq')
         .expect(200)
         .expect(function(res) {
           expect(res.body.escrow).to.be.an('object');
@@ -29,7 +29,7 @@ describe('controllers/EscrowController', function() {
 
     it('should not get an escrow that does not exist', function(done) {
       request(sails.hooks.http.app)
-        .get('/api/1/escrows/9sCVLPisidWq0000000000')
+        .get('/api/1/escrows/9sCVLPisidWq00000000')
         .expect(404)
         .expect(function(res) {
           expect(res.body.code).to.equal('escrow_not_found');

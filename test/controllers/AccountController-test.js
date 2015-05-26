@@ -18,7 +18,7 @@ describe('controllers/AccountController', function() {
   describe('GET /accounts/:hash', function() {
     it('should get the account', function(done) {
       request(sails.hooks.http.app)
-        .get('/api/1/accounts/9sCVLPisidWqxApx2bxqYX')
+        .get('/api/1/accounts/9sCVLPisidWqxApx2bxq')
         .expect(200)
         .expect(function(res) {
           expect(res.body.account).to.be.an('object');
@@ -33,7 +33,7 @@ describe('controllers/AccountController', function() {
 
     it('should not get an account that does not exist', function(done) {
       request(sails.hooks.http.app)
-        .get('/api/1/accounts/9sCVLPisidWq0000000000')
+        .get('/api/1/accounts/9sCVLPisidWq00000000')
         .expect(404)
         .expect(function(res) {
           expect(res.body.code).to.equal('account_not_found');
@@ -50,7 +50,7 @@ describe('controllers/AccountController', function() {
           account: {
             email: 'foo@enky',
             password: 'newaccount',
-            hash: '9sCVLPisidWq0000000001'
+            hash: '9sCVLPisidWq00000001'
           }
         })
         .expect(400)
@@ -91,7 +91,7 @@ describe('controllers/AccountController', function() {
           account: {
             email: 'newaccount@enky.io',
             password: 'newaccount',
-            hash: '9sCVLPisidWq0000000001'
+            hash: '9sCVLPisidWq00000001'
           }
         })
         .expect(201)

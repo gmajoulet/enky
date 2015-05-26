@@ -12,7 +12,7 @@ module.exports = {
       primaryKey: true,
       unique: true,
       required: true,
-      regex: /^[a-zA-Z0-9]{21,22}$/
+      regex: /^[a-zA-Z0-9]{20}$/
     },
     status: {
       type: 'string',
