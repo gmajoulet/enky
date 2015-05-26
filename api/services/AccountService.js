@@ -11,14 +11,14 @@ module.exports = {
   },
 
   /**
-   * Get the Account for the given hash
-   * If no hash is passed, return all the Accounts (alias for getAll)
+   * Get the Account for the given attributes
+   * If no attributes are passed, return all the Accounts (alias for getAll)
    *
-   * @param  {String} hash
+   * @param  {Object}  attributes { hash: hash }
    * @return {Promise}  Resolved with an object (single Account) or array (all)
    */
-  get: function(hash) {
-    if (!hash) {
+  get: function(attributes) {
+    if (!attributes) {
       return this.getAll();
     }
 
@@ -26,7 +26,7 @@ module.exports = {
       co(function* () {
         // The `find` method always return an array
         // Hash is a unique field, we have either 0 or 1 result
-        var accounts = yield Account.find({ hash: hash });
+        var accounts = yield Account.find(attributes);
 
         // If no result
         if (!accounts.length) {
