@@ -24,7 +24,7 @@ describe('controllers/AccountController', function() {
           expect(res.body.account).to.be.an('object');
           expect(res.body.account).to.have.property('status');
           expect(res.body.account).to.have.property('email');
-          expect(res.body.account).to.have.property('email');
+          expect(res.body.account).to.have.property('apiKey');
           expect(res.body.account).not.to.have.property('password');
           expect(res.body.account).not.to.have.property('salt');
         })
@@ -43,7 +43,7 @@ describe('controllers/AccountController', function() {
   });
 
   describe('POST /accounts/:hash', function() {
-    it('should not create an account if the validation fails', function(done) {
+    it('should not create an account if the validation fails (1 attribute)', function(done) {
       request(sails.hooks.http.app)
         .post('/api/1/accounts')
         .send({
@@ -64,7 +64,7 @@ describe('controllers/AccountController', function() {
         .end(done);
     });
 
-    it('should not create an account if the validation fails', function(done) {
+    it('should not create an account if the validation fails (2 attributes)', function(done) {
       request(sails.hooks.http.app)
         .post('/api/1/accounts')
         .send({
@@ -97,6 +97,11 @@ describe('controllers/AccountController', function() {
         .expect(201)
         .expect(function(res) {
           expect(res.body.account).to.be.an('object');
+          expect(res.body.account).to.have.property('status');
+          expect(res.body.account).to.have.property('email');
+          expect(res.body.account).to.have.property('apiKey');
+          expect(res.body.account).not.to.have.property('password');
+          expect(res.body.account).not.to.have.property('salt');
         })
         .end(done);
     });

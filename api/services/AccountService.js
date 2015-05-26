@@ -40,6 +40,11 @@ module.exports = {
   },
 
   create: function(accountData) {
+    accountData = accountData || {};
+
+    // Generate an API Key
+    accountData.apiKey = RandomService.getApiKey();
+
     return Account.create(accountData);
   },
 

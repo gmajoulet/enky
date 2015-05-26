@@ -9,5 +9,14 @@ module.exports = {
    */
   getHash: function() {
     return base58.encode(crypto.randomBytes(16));
+  },
+
+  /**
+   * Returns a 32 chars length random API Key
+   *
+   * @return {String} 32 chars API Key
+   */
+  getApiKey: function() {
+    return base58.encode(crypto.randomBytes(32)).substring(0, 32);
   }
 };

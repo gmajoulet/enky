@@ -4,7 +4,8 @@
     "Account",
     "Escrow",
     "EscrowService",
-    "AccountService"
+    "AccountService",
+    "RandomService"
   ],
   "node": true,
   "boss": true,

@@ -33,6 +33,11 @@ module.exports = {
       type: 'string',
       required: true
     },
+    apiKey: {
+      type: 'string',
+      size: 32,
+      required: true
+    },
 
     /**
      * Model serialization tweakings
